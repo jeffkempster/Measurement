@@ -8,6 +8,6 @@ This class is extemely useful for converting to/from various units of measure.
 - Format with MeasurementFormater()
 
 ## Resources
-https://developer.apple.com/documentation/foundation/measurementformatter
-https://www.sitepoint.com/using-measurementformatter/
-https://littlebitesofcocoa.com/277-measurementformatter-basics
+- https://developer.apple.com/documentation/foundation/measurementformatter
+- https://www.sitepoint.com/using-measurementformatter/
+- https://littlebitesofcocoa.com/277-measurementformatter-basics
