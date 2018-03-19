@@ -64,6 +64,7 @@ let miles = Measurement(value: 1, unit: UnitLength.miles)
 // It should be 5280 ft  ¯\_(ツ)_/¯
 // Ok now I know why thanks to this stackoverflow question...
 // https://stackoverflow.com/questions/49373300/swift-measurement-convertto-miles-to-feet-gives-wrong-result
+// I filed a but at bugreporter.apple.com #38641535
 
 let milesToFeet = miles.converted(to: .feet)
 measurementFormatter.string(from: milesToFeet)
