@@ -60,16 +60,31 @@ measurementFormatter.numberFormatter = numberFormatter
 
 
 let miles = Measurement(value: 1, unit: UnitLength.miles)
+let milesToFeet = miles.converted(to: .feet)
+measurementFormatter.string(from: milesToFeet)
 // In my playground this equals 5279.98687664042 ft and I can't figure out why
 // It should be 5280 ft  ¯\_(ツ)_/¯
 // Ok now I know why thanks to this stackoverflow question...
 // https://stackoverflow.com/questions/49373300/swift-measurement-convertto-miles-to-feet-gives-wrong-result
 // I filed a but at bugreporter.apple.com #38641535
 
-let milesToFeet = miles.converted(to: .feet)
-measurementFormatter.string(from: milesToFeet)
 
 
+// So you can add your own units (thanks Martin R.)
+// This "more precise" mile conversion will lead us to the right answer of 5280
+extension UnitLength {
+    static var preciseMiles: UnitLength {
+        return UnitLength(symbol: "mile",
+                          converter: UnitConverterLinear(coefficient: 1609.344))
+    }
+}
+
+// In More Precise Miles
+let lengthMiles = Measurement(value: 1, unit: UnitLength.preciseMiles)
+let lengthFeet = lengthMiles.converted(to: UnitLength.feet)
+print(lengthFeet) // 5280.0 ft
+
+// Second Example with a number formatter
 let numberFormatter2 = NumberFormatter()
 numberFormatter2.numberStyle = .decimal // this will use the thousands separator
 numberFormatter2.maximumFractionDigits = 0 // number of decimal points
